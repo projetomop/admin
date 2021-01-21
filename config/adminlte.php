@@ -226,7 +226,7 @@ return [
     'menu' => [
         [
             'text' => 'Buscar',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -241,7 +241,7 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configurações de conta'],
         [
             'text' => 'Perfil',
             'url'  => 'admin/settings',
