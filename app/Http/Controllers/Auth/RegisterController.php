@@ -31,6 +31,10 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function showRegistrationForm()
+    {
+        return view('vendor.adminlte.auth.register');
+    }
     /**
      * Create a new controller instance.
      *
