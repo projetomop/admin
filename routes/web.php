@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/teste', function(){
     return view('test');
 });
+Route::get('/cadClient', function(){
+    return view('register.client');
+});
 
 Auth::routes();
 
