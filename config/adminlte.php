@@ -235,32 +235,32 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Páginas',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'Configurações de conta'],
+        ['header' => 'Configurações'],
         [
             'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
+       /* [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
         [
-            'text'    => 'Multi Nível',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Cadastro',
+            'icon'    => 'fas fa-plus',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Usuário',
                     'url'  => '#',
                 ],
-                [
+                /*[
                     'text'    => 'level_one',
                     'url'     => '#',
                     'submenu' => [
@@ -283,9 +283,13 @@ return [
                             ],
                         ],
                     ],
+                ], */
+                [
+                    'text' => 'Prestador',
+                    'url'  => '#',
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Serviços',
                     'url'  => '#',
                 ],
             ],
