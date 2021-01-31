@@ -238,7 +238,7 @@ return [
             'text'        => 'Páginas',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            // 'label'       => 4,
             'label_color' => 'success',
         ],
         ['header' => 'Configurações'],
@@ -294,6 +294,7 @@ return [
                 ],
             ],
         ],
+     
         /*['header' => 'labels'],
         [
             'text'       => 'important',
