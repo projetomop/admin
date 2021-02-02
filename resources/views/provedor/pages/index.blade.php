@@ -4,10 +4,10 @@
 
 @section('content')
 
-<h1 class="text-center text-bold">Usuários</h1>
+<h1 class="text-center text-bold">Prestadores</h1>
 <hr>
 <div class="cadastro">
-    <a href="{{ route('client.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</a>
+    <a href="{{ route('provider.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</a>
 </div>
 <div class="table-responsive mt-1">
     <table class="table table-bordered">
@@ -26,19 +26,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($clientes as $cliente)
+            @foreach ($provider as $provider)
             
             <tr>
-                <th scope="row">{{ $cliente->id }}</th>
-                <td>{{ $cliente->name }}</td>
-                <td>{{ $cliente->cpf }}</td>
-                <td>{{ $cliente->email }}</td>
-                <td>{{ $cliente->telephone }}</td>
-                <!--<td>{{ $cliente->street }}</td>
-                <td>{{ $cliente->district }}</td>
-                <td>{{ $cliente->city }}</td>
-                <td>{{ $cliente->state }}</td> -->
-                <td class="text-center"><a href="{{ route('client.show', ['client' => $cliente->id]) }}" class="btn btn-success">Ver</a>
+                <th scope="row">{{ $provider->id }}</th>
+                <td>{{ $provider->name }}</td>
+                <td>{{ $provider->cpf }}</td>
+                <td>{{ $provider->email }}</td>
+                <td>{{ $provider->telephone }}</td>
+                <!--<td>{{ $provider->street }}</td>
+                <td>{{ $provider->district }}</td>
+                <td>{{ $provider->city }}</td>
+                <td>{{ $provider->state }}</td> -->
+                <td class="text-center"><a href="{{ route('provider.show', ['provider' => $provider->id]) }}" class="btn btn-success">Ver</a>
                 </td>
             </tr>
         </tbody>

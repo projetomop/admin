@@ -17,11 +17,11 @@ Route::get('/', function () {
     return view('vendor.adminlte.auth.login');
 });
 
+Route::resource('clientes', 'App\Http\Controllers\ClientController')->names('client')->parameters(['clientes' => 'client']);
+Route::resource('prestador', 'App\Http\Controllers\ProviderController')->names('provider')->parameters(['prestador' => 'provider']);
+
 Route::get('/teste', function(){
     return view('test');
-});
-Route::get('/cadClient', function(){
-    return view('register.client');
 });
 
 Auth::routes();

@@ -1,18 +1,19 @@
 @extends('adminlte::page')
 
-@section ('title', 'MOP | Cadastro')
+@section('title', 'MOP | Cadastro')
 
 @section('content')
 
 <div class="header mb-2">
-    <h1 class="text-center text-bold">Cadastro de Cliente</h1>
-</div>    
+    <h1 class="text-center text-bold">Cadastro de Prestador</h1>
+</div> 
+
 <div class="mx-auto col-md-10">
     <div class="mt-2 mb-2">
-            {!! Form::open(['route' => 'client.store', 'class' => 'form']) !!}
+        {!! Form::open(['route' => 'provider.store', 'class' => 'form']) !!}
 
-            {!! Form::token(); !!}
-        
+        {!! Form::token(); !!}
+    
         <div class="form-group">
             {{ Form::label('name', 'Nome:') }}
             {!! Form::text('name', '', ['class' => 'form-control']) !!}
@@ -52,12 +53,11 @@
             </div>
         </div>
         <div class="text-center">
-            {!! Form::submit('Cadastrar',['class' => 'btn btn-success'])!!}  
+            {!! Form::submit('Enviar',['class' => 'btn btn-success'])!!}  
         </div>
-            
     </div>
 </div>
 
 {!! Form::close() !!}
 
-@stop
+@stop 

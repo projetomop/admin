@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-success',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -244,8 +244,22 @@ return [
         ['header' => 'Configurações'],
         [
             'text' => 'Perfil',
-            'url'  => 'admin/settings',
+            'url'  => '#',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text'    => 'Consulta',
+            'icon'    => 'fas fa-search',
+            'submenu' => [
+                [
+                    'text' => 'Clientes',
+                    'url'  => 'clientes',
+                ],
+                [
+                    'text' => 'Prestador',
+                    'url'  => 'prestador',
+                ],
+            ],
         ],
        /* [
             'text' => 'change_password',
@@ -257,8 +271,8 @@ return [
             'icon'    => 'fas fa-plus',
             'submenu' => [
                 [
-                    'text' => 'Usuário',
-                    'url'  => '#',
+                    'text' => 'Clientes',
+                    'url'  => 'clientes/cadastro',
                 ],
                 /*[
                     'text'    => 'level_one',
@@ -286,12 +300,13 @@ return [
                 ], */
                 [
                     'text' => 'Prestador',
-                    'url'  => '#',
+                    'url'  => 'prestador/cadastro',
                 ],
+                /*
                 [
                     'text' => 'Serviços',
                     'url'  => '#',
-                ],
+                ], */
             ],
         ],
      
