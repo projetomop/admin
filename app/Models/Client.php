@@ -20,5 +20,7 @@ class Client extends Model
         'district',
         'city',
         'state',
+        'image',
+        'password',
     ];
 }

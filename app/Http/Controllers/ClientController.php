@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -16,7 +17,7 @@ class ClientController extends Controller
     {
         $clients = Client::all();
 
-        return view('cliente.pages.index')->with('clientes', $clients);
+        return view('client.pages.indexClient')->with('clients', $clients);
     }
 
     /**
@@ -26,7 +27,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('cliente.forms.cliente_form');
+        return view('client.pages.createClient');
     }
 
     /**
@@ -37,19 +38,11 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client();
-        $client->name = $request->name;
-        $client->cpf = $request->cpf;
-        $client->email = $request->email;
-        $client->telephone = $request->telephone;
-        $client->street = $request->street;
-        $client->district = $request->district;
-        $client->city = $request->city;
-        $client->state = $request->state;
-
+        $client= Client::create($request->all());
+        $client->fill(['password' => Hash::make($request->cpf)]);
         $client->save();
 
-        return redirect()->route(route:'client.index');
+        return redirect()->route('client.index');
     }
 
     /**
@@ -60,7 +53,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('cliente.pages.showClient')->with('client', $client);
+        return view('client.pages.showClient')->with('client', $client);
     }
 
     /**
@@ -71,7 +64,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('cliente.pages.editClient')->with('client', $client);
+        return view('client.pages.editClient')->with('client', $client);
     }
 
     /**
@@ -94,7 +87,7 @@ class ClientController extends Controller
 
         $client->save();
 
-        return redirect()->route(route:'client.index');
+        return redirect()->route('client.index');
     }
 
     /**
@@ -106,6 +99,6 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route(route:'client.index');
+        return redirect()->route('client.index');
     }
 }

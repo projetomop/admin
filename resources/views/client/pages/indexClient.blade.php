@@ -26,19 +26,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($clientes as $cliente)
+            @foreach ($clients as $client)
             
             <tr>
-                <th scope="row">{{ $cliente->id }}</th>
-                <td>{{ $cliente->name }}</td>
-                <td>{{ $cliente->cpf }}</td>
-                <td>{{ $cliente->email }}</td>
-                <td>{{ $cliente->telephone }}</td>
-                <!--<td>{{ $cliente->street }}</td>
-                <td>{{ $cliente->district }}</td>
-                <td>{{ $cliente->city }}</td>
-                <td>{{ $cliente->state }}</td> -->
-                <td class="text-center"><a href="{{ route('client.show', ['client' => $cliente->id]) }}" class="btn btn-success">Ver</a>
+                <th scope="row">{{ $client->id }}</th>
+                <td>{{ $client->name }}</td>
+                <td>{{ $client->cpf }}</td>
+                <td>{{ $client->email }}</td>
+                <td>{{ $client->telephone }}</td>
+                <!--<td>{{ $client->street }}</td>
+                <td>{{ $client->district }}</td>
+                <td>{{ $client->city }}</td>
+                <td>{{ $client->state }}</td> -->
+                <td class="text-center"><a href="{{ route('client.show', ['client' => $client->id]) }}" class="btn btn-success">Ver</a>
                 </td>
             </tr>
         </tbody>

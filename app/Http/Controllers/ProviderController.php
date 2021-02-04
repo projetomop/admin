@@ -48,7 +48,7 @@ class ProviderController extends Controller
 
         $provider->save();
 
-        return redirect()->route(route:'provider.index');
+        return redirect()->route('provider.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class ProviderController extends Controller
 
         $provider->save();
 
-        return redirect()->route(route:'provider.index');
+        return redirect()->route('provider.index');
     }
 
     /**
@@ -105,6 +105,6 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         $provider->delete();
-        return redirect()->route(route:'provider.index');
+        return redirect()->route('provider.index');
     }
 }
