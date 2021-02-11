@@ -7,13 +7,16 @@
 </div>
 <hr>
 <div class="mb-2">
-    <div class="form-group">
-        <label>Nome:</label>
-        <input class="form-control" type="text" disabled value="{{ $provider->name }}">
-    </div>
-    <div class="form-group">
-        <label>E-mail:</label>
-        <input class="form-control" type="text" disabled value="{{ $provider->email }}">
+    <div class="form-row">
+        <div class="form-group col-md-10">
+            <label>Nome:</label>
+            <input class="form-control" type="text" disabled value="{{ $provider->name }}">
+            <label>E-mail:</label>
+            <input class="form-control" type="text" disabled value="{{ $provider->email }}">
+        </div>
+        <div class="form-group col-md-2">
+            <img src="{{asset('assets/'.$provider->image)}}" alt="PerfilPrestador" class="img-fluid">
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">

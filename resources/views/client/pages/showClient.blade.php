@@ -15,7 +15,7 @@
             <input class="form-control" type="text" disabled value="{{ $client->email }}">
         </div>
         <div class="form-group col-md-2">
-            <img src="{{asset('assets/'.$client->image)}}" alt="" class="img-fluid">
+            <img src="{{asset('assets/'.$client->image)}}" alt="PerfilCliente" class="img-fluid">
         </div>
     </div>
     <div class="form-row">

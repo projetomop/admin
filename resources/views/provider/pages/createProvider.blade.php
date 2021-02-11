@@ -1,8 +1,8 @@
 @extends('adminlte::page')
 
-@section('title', 'MOP | Editar')
+@section('title', 'MOP | Cadastro')
 
-@section('header_client', 'Editar Provedor')
+@section('header_client', 'Cadastro de Provedor')
 
 @section('content')
 

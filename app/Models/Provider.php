@@ -20,5 +20,7 @@ class Provider extends Model
         'district',
         'city',
         'state',
+        'image',
+        'password',
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -15,7 +16,7 @@ class ProviderController extends Controller
     public function index()
     {
         $provider = Provider::all();
-        return view('provedor.pages.index')->with('provider', $provider);
+        return view('provider.pages.index')->with('provider', $provider);
     }
 
     /**
@@ -25,7 +26,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        return view('provedor.forms.provedor_form');
+        return view('provider.pages.createProvider');
     }
 
     /**
@@ -36,16 +37,8 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        $provider = new Provider();
-        $provider->name = $request->name;
-        $provider->cpf = $request->cpf;
-        $provider->email = $request->email;
-        $provider->telephone = $request->telephone;
-        $provider->street = $request->street;
-        $provider->district = $request->district;
-        $provider->city = $request->city;
-        $provider->state = $request->state;
-
+        $provider=Provider::create($request->all());
+        $provider->fill(['password' => Hash::make($request->cpf)]);
         $provider->save();
 
         return redirect()->route('provider.index');
@@ -59,7 +52,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        return view('provedor.pages.showProvider')->with('provider', $provider);
+        return view('provider.pages.showProvider')->with('provider', $provider);
     }
 
     /**
@@ -70,7 +63,7 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider)
     {
-        return view('provedor.pages.editProvider')->with('provider', $provider);
+        return view('provider.pages.editProvider')->with('provider', $provider);
     }
 
     /**

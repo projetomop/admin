@@ -1,63 +1,60 @@
-@extends('adminlte::page')
-
-@section('title', 'MOP | Cadastro')
-
-@section('content')
-
 <div class="header mb-2">
-    <h1 class="text-center text-bold">Cadastro de Prestador</h1>
+    <h1 class="text-center text-bold">@yield('header_client')</h1>
 </div> 
-
-<div class="mx-auto col-md-10">
+<div class="mx-auto col-md-12">
     <div class="mt-2 mb-2">
+        @if (isset($provider))
+        {!! Form::model($provider, ['method' => 'PUT', 'route' => ['provider.update', $provider->id]]) !!}
+        @else
         {!! Form::open(['route' => 'provider.store', 'class' => 'form']) !!}
-
         {!! Form::token(); !!}
+        @endif
     
         <div class="form-group">
             {{ Form::label('name', 'Nome:') }}
-            {!! Form::text('name', '', ['class' => 'form-control']) !!}
+            {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {{ Form::label('email', 'E-Mail:') }}
-            {!! Form::text('email', '',['class' => 'form-control']) !!}
+            {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 {{ Form::label('cpf', 'CPF:') }}
-                {!! Form::text('cpf', '',['class' => 'form-control']) !!} 
+                {!! Form::text('cpf', $value = null,['class' => 'form-control']) !!} 
             </div>
             <div class="form-group col-md-6">
                 {{ Form::label('telephone', 'Telefone:') }}
-                {!! Form::text('telephone', '',['class' => 'form-control']) !!}
+                {!! Form::text('telephone', $value = null,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 {!! Form::label('street', 'Rua') !!}
-                {!! Form::text('street', '', ['class' => ['form-control']]) !!}
+                {!! Form::text('street', $value = null, ['class' => ['form-control']]) !!}
             </div>
             <div class="fomr-group col-md-6">
                 {!! Form::label('district', 'Bairro') !!}
-                {!! Form::text('district', '', ['class' => ['form-control']]) !!}
+                {!! Form::text('district', $value = null, ['class' => ['form-control']]) !!}
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 {!! Form::label('city', 'Cidade') !!}
-                {!! Form::text('city', '', ['class' => ['form-control']]) !!}
+                {!! Form::text('city', $value = null, ['class' => ['form-control']]) !!}
             </div>
             <div class="fomr-group col-md-6">
                 {!! Form::label('state', 'Estado') !!}
-                {!! Form::text('state', '', ['class' => ['form-control']]) !!}
+                {!! Form::text('state', $value = null, ['class' => ['form-control']]) !!}
             </div>
         </div>
         <div class="text-center">
-            {!! Form::submit('Enviar',['class' => 'btn btn-success'])!!}  
+            @if(isset($provider))
+            {!! Form::submit('Editar',['class' => 'btn btn-success'])!!}
+            @else
+            {!! Form::submit('Enviar',['class' => 'btn btn-success'])!!} 
+            @endif
         </div>
+        {!! Form::close() !!}
     </div>
 </div>
-
-{!! Form::close() !!}
-
-@stop 
