@@ -309,6 +309,45 @@ return [
                 ], */
             ],
         ],
+        [
+            'text'    => 'Tabelas',
+            'icon'    => 'fas fa-table',
+            'submenu' => [
+                [
+                    'text' => 'Serviços',
+                    'url'  => 'servicos',
+                ],
+                /*[
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ], */
+                /*
+                [
+                    'text' => 'Serviços',
+                    'url'  => '#',
+                ], */
+            ],
+        ],
      
         /*['header' => 'labels'],
         [

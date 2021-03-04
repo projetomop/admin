@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::resource('clientes', 'App\Http\Controllers\ClientController')->names('client')->parameters(['clientes' => 'client']);
 Route::resource('prestador', 'App\Http\Controllers\ProviderController')->names('provider')->parameters(['prestador' => 'provider']);
+Route::resource('servicos', 'App\Http\Controllers\ServiceController')->names('service')->parameters(['servicos' => 'service']);
 
 Route::get('/teste', function(){
     return view('test');
