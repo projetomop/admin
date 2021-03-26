@@ -15,11 +15,90 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+       $profissoes = [
+            'Adestrador de animais',
+            'Advogado',
+            'Aplicador de película residencial',
+            'Ator',
+            'Babá',
+            'Barbeiro',
+            'Cabeleireiro',
+            'Capinador',
+            'Cerimonialista',
+            'Churrasqueiro',
+            'Coach',
+            'Confeiteira',
+            'Contador',
+            'Corretor',
+            'Costureira',
+            'Cozinheira',
+            'Cuidador de idoso',
+            'Dançarino',
+            'Dentista',
+            'Desing de sobrancelhas',
+            'Detetizador',
+            'Diarista',
+            'Eletricista',
+            'Encanador',
+            'Enfermeiro',
+            'Faxineira',
+            'Fisioterapeuta',
+            'Fonoaudiologo',
+            'Fotografo',
+            'Freteiro',
+            'Garçom',
+            'Gesseiro',
+            'Guia turistico',
+            'Jardineiro',
+            'Jornalista',
+            'Lavador de carro',
+            'Locutor',
+            'Manicure & Pedicure',
+            'Maquiadora',
+            'Marceneiro',
+            'Marmorista',
+            'Massagista',
+            'Mecanico',
+            'Mestre de Obras',
+            'Metalurgico',
+            'Montador de antena',
+            'Montador de móveis',
+            'Motoboy',
+            'Motorista',
+            'Musico',
+            'Nutricisonista',
+            'Pedreiro',
+            'Personal Trainer',
+            'Pintor',
+            'Piscineiro',
+            'Professor',
+            'Projetista de irrigação',
+            'Projetista Eletrico',
+            'Protético',
+            'Psicologo',
+            'Radialista',
+            'Tecnico agricola',
+            'Tecnico de informatica',
+            'Técnico de Refrigeração',
+            'Tecnico em edificação',
+            'Técnico em Eletronica',
+            'Tecnico em enfermagem',
+            'Tratorista',
+            'Videomaker',
+            'Vidraceiro'
+       ]; 
+
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@mop.com',
             'password' => Hash::make('senha'),
         ]);
+        foreach ($profissoes as $p) {
+            DB::table('profissions')->insert([
+                'description' => $p
+            ]);
+        }
+       
 
         // \App\Models\User::factory(10)->create();
     }

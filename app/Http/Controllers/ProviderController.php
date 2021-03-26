@@ -16,7 +16,7 @@ class ProviderController extends Controller
     public function index()
     {
         $provider = Provider::all();
-        return view('provider.pages.index')->with('provider', $provider);
+        return view('provider.pages.indexProvider')->with('provider', $provider);
     }
 
     /**
@@ -41,7 +41,7 @@ class ProviderController extends Controller
         $provider->fill(['password' => Hash::make($request->cpf)]);
         $provider->save();
 
-        return redirect()->route('provider.index');
+        return redirect()->route('provider.indexProvider');
     }
 
     /**

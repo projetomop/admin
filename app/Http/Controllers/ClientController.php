@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -13,10 +14,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::all();
-
+        if ($request->search != "") {
+            $clients = Client::where('name', 'like', '%' . $request->search . '%')->get();
+        } else {
+            $clients = Client::all();
+        }
         return view('client.pages.indexClient')->with('clients', $clients);
     }
 
@@ -36,9 +40,10 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
-        $client= Client::create($request->all());
+        $validated = $request->validated();
+        $client = Client::create($request->all());
         $client->fill(['password' => Hash::make($request->cpf)]);
         $client->save();
 
@@ -64,6 +69,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+
         return view('client.pages.editClient')->with('client', $client);
     }
 
@@ -74,17 +80,19 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(ClientRequest $request, Client $client)
     {
-        $client->name = $request->name;
-        $client->cpf = $request->cpf;
-        $client->email = $request->email;
-        $client->telephone = $request->telephone;
-        $client->street = $request->street;
-        $client->district = $request->district;
-        $client->city = $request->city;
-        $client->state = $request->state;
-
+        $validated = $request->validated();
+        // $client->name = $request->name;
+        // $client->cpf = $request->cpf;
+        // $client->email = $request->email;
+        // $client->telephone = $request->telephone;
+        // $client->cep = $request->cep;
+        // $client->street = $request->street;
+        // $client->district = $request->district;
+        // $client->city = $request->city;
+        // $client->state = $request->state;
+        $client->update($request->all());
         $client->save();
 
         return redirect()->route('client.index');

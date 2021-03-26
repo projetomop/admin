@@ -12,9 +12,10 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('cpf')->unsigned();
-            $table->string('email')->unique();;
+            $table->string('cpf')->unique();
+            $table->string('email')->unique();
             $table->string('telephone');
+            $table->string('cep');
             $table->string('street');
             $table->string('district');
             $table->string('city');

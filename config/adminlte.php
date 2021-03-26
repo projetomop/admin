@@ -235,8 +235,8 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Páginas',
-            'url'         => 'admin/pages',
+            'text'        => 'Dashboard',
+            'url'         => '/home',
             'icon'        => 'far fa-fw fa-file',
             // 'label'       => 4,
             'label_color' => 'success',
@@ -248,74 +248,27 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text'    => 'Consulta',
-            'icon'    => 'fas fa-search',
-            'submenu' => [
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                ],
-                [
-                    'text' => 'Prestador',
-                    'url'  => 'prestador',
-                ],
-            ],
+            'text' => 'Clientes',
+            'url'  => 'clientes',
+            'icon' => 'fas fa-fw fa-user',
         ],
-       /* [
+        /* [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ], */
         [
-            'text'    => 'Cadastro',
-            'icon'    => 'fas fa-plus',
-            'submenu' => [
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes/cadastro',
-                ],
-                /*[
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ], */
-                [
-                    'text' => 'Prestador',
-                    'url'  => 'prestador/cadastro',
-                ],
-                /*
-                [
-                    'text' => 'Serviços',
-                    'url'  => '#',
-                ], */
-            ],
+            'text' => 'Prestador de Serviço',
+            'url'  => 'prestador',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text'    => 'Tabelas',
             'icon'    => 'fas fa-table',
             'submenu' => [
                 [
-                    'text' => 'Serviços',
-                    'url'  => 'servicos',
+                    'text' => 'Profissões',
+                    'url'  => 'profissoes',
                 ],
                 /*[
                     'text'    => 'level_one',
