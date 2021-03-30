@@ -10,10 +10,9 @@
                 <h3 class="card-title">Lista de Prestadores de Serviço</h3>
                 <div class="card-tools float-left">
                     <div class="input-group input-group-sm ml-3">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                            data-target="#cadService-">
+                        <a class="btn btn-info btn-sm" href="{{route('provider.create')}}">
                             <i class="fas fa-plus"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
