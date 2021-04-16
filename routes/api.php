@@ -20,14 +20,13 @@ use App\Http\Controllers\Api\ServiceController;
 <<<<<<< HEAD
 });*/
 
+Route::post('auth/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
-=======
-});
 
 include_once(__DIR__.'/api/profissions.php');
-include_once(__DIR__.'/api/login.php');
+//include_once(__DIR__.'/api/login.php');
 
 Route::apiResources([
     'service' => ServiceController::class,
 ]);
->>>>>>> 807d01bfb70290334db8270fe619385762cf319a
+

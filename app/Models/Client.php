@@ -6,10 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Client extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
    
 
     protected $fillable = [
@@ -35,4 +36,5 @@ class Client extends Authenticatable
         'password',
         'remember_token',
     ];
+
 }

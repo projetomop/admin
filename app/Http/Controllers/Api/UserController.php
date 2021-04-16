@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Client;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,9 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $client = Client::all();
+        $user = User::all();
 
-        return response()->json($client);
+        return response()->json($user);
     }
 
     /**
