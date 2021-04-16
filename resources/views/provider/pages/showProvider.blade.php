@@ -2,86 +2,71 @@
 
 @section('content')
 
-<div class="header">
-    <h1 class="text-center text-bold">Prestador {{ $provider->name }}</h1>
-</div>
-<hr>
-<div class="mb-2">
-    <div class="form-row">
-        <div class="form-group col-md-10">
-            <label>Nome:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->name }}">
-            <label>E-mail:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->email }}">
-        </div>
-        <div class="form-group col-md-2">
-            <img src="{{asset('assets/'.$provider->image)}}" alt="PerfilPrestador" class="img-fluid">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>CPF:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->cpf }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Telefone:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->telephone }}">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Rua:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->street }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Bairro:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->district }}">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Cidade:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->city }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Estado:</label>
-            <input class="form-control" type="text" disabled value="{{ $provider->state }}">
-        </div>
-    </div>
+<section class="content">
     <div class="row">
-        <div class="col">
-    <div class="text-center">
-        <a href="{{ route('provider.edit',['provider' => $provider->id]) }}" class="btn btn-success">Editar</a>
+        <div class="col-md-12 ">
+            <div class="card card-outline card-info ">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Prestador: {{ $provider->name }}
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm ml-3">
+                            <a type="button" class="btn btn-info btn-sm" href="{{route('provider.edit',$provider->id)}}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {!! Form::model($provider, ['method' => 'PUT', 'route' => ['provider.update', $provider->id]]) !!}
 
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
-            Excluir
-        </button>
-        
-        <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmação de Exclusão</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+                    <div class="form-group">
+                        {{ Form::label('name', 'Nome:') }}
+                        {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('email', 'E-mail:') }}
+                        {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ Form::label('cpf', 'CPF:') }}
+                            {!! Form::text('cpf', $value = null,['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ Form::label('telephone', 'Telefone:') }}
+                            {!! Form::text('telephone', $value = null,['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('cep', 'CEP') !!}
+                            {!! Form::text('cep', $value = null, ['class' => ['form-control'], 'id'=>'cep']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('street', 'Rua') !!}
+                            {!! Form::text('street', $value = null, ['class' => ['form-control'], 'id'=>'rua']) !!}
+                        </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('district', 'Bairro') !!}
+                            {!! Form::text('district', $value = null, ['class' => ['form-control'], 'id'=>'bairro']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('city', 'Cidade') !!}
+                            {!! Form::text('city', $value = null, ['class' => ['form-control'], 'id'=>'cidade']) !!}
+                        </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('state', 'Estado') !!}
+                            {!! Form::text('state', $value = null, ['class' => ['form-control'], 'id'=>'uf']) !!}
+                        </div>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
-                <div class="modal-body">
-                Tem certeza que deseja excluir o Provedor {{ $provider->name }}?
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                {{ Form::open(['method' => 'DELETE', 'route' => ['provider.destroy', $provider->id]] )}}
-                {{ Form::hidden('method', 'DELETE') }}
-                {{ Form::submit('Sim', ['class' => 'btn btn-danger'] )}}
-                {{ Form::close() }}
-                </div>
-            </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-</div>
+</section>
 
 @stop

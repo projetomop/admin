@@ -2,86 +2,71 @@
 
 @section('content')
 
-<div class="header">
-    <h1 class="text-center text-bold">Cliente: {{ $client->name }}</h1>
-</div>
-<hr>
-<div class="mb-2">
-    <div class="form-row">
-        <div class="form-group col-md-10">
-            <label>Nome:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->name }}">
-            <label>E-mail:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->email }}">
-        </div>
-        <div class="form-group col-md-2">
-            <img src="{{asset('assets/'.$client->image)}}" alt="PerfilCliente" class="img-fluid">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>CPF:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->cpf }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Telefone:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->telephone }}">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Rua:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->street }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Bairro:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->district }}">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Cidade:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->city }}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Estado:</label>
-            <input class="form-control" type="text" disabled value="{{ $client->state }}">
-        </div>
-    </div>
+<section class="content">
     <div class="row">
-        <div class="col">
-            <div class="text-center">
-                <a href="{{ route('client.edit',['client' => $client->id]) }}" class="btn btn-success">Editar</a>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
-                    Excluir
-                </button>
-
-                <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirmação de Exclusão</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Tem certeza que deseja excluir o Cliente {{ $client->name }}?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                                {{ Form::open(['method' => 'DELETE', 'route' => ['client.destroy', $client->id]] )}}
-                                {{ Form::hidden('method', 'DELETE') }}
-                                {{ Form::submit('Sim', ['class' => 'btn btn-danger'] )}}
-                                {{ Form::close() }}
-                            </div>
+        <div class="col-md-12 ">
+            <div class="card card-outline card-info ">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Cliente: {{ $client->name }}
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm ml-3">
+                            <a type="button" class="btn btn-info btn-sm" href="{{route('client.edit',$client->id)}}">
+                                <i class="fas fa-edit"></i>
+                            </a>
                         </div>
                     </div>
+                </div>
+                <div class="card-body">
+                    {!! Form::model($client, ['method' => 'PUT', 'route' => ['client.update', $client->id]]) !!}
+
+
+                    <div class="form-group">
+                        {{ Form::label('name', 'Nome:') }}
+                        {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('email', 'E-mail:') }}
+                        {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ Form::label('cpf', 'CPF:') }}
+                            {!! Form::text('cpf', $value = null,['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ Form::label('telephone', 'Telefone:') }}
+                            {!! Form::text('telephone', $value = null,['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('cep', 'CEP') !!}
+                            {!! Form::text('cep', $value = null, ['class' => ['form-control'], 'id'=>'cep']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('street', 'Rua') !!}
+                            {!! Form::text('street', $value = null, ['class' => ['form-control'], 'id'=>'rua']) !!}
+                        </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('district', 'Bairro') !!}
+                            {!! Form::text('district', $value = null, ['class' => ['form-control'], 'id'=>'bairro']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('city', 'Cidade') !!}
+                            {!! Form::text('city', $value = null, ['class' => ['form-control'], 'id'=>'cidade']) !!}
+                        </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('state', 'Estado') !!}
+                            {!! Form::text('state', $value = null, ['class' => ['form-control'], 'id'=>'uf']) !!}
+                        </div>
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 @stop

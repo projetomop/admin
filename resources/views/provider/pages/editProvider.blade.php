@@ -2,7 +2,7 @@
 
 @section('title', 'MOP | Editar')
 
-@section('header_client', 'Editar Provedor')
+@section('header_provider', 'Editar Prestador')
 
 @section('content')
 

@@ -16,6 +16,7 @@ class Provider extends Model
         'cpf',
         'email',
         'telephone',
+        'cep',
         'street',
         'district',
         'city',

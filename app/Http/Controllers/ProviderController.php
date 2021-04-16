@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProviderRequest;
 
 class ProviderController extends Controller
 {
@@ -16,7 +17,7 @@ class ProviderController extends Controller
     public function index()
     {
         $provider = Provider::all();
-        return view('provider.pages.index')->with('provider', $provider);
+        return view('provider.pages.indexProvider')->with('provider', $provider);
     }
 
     /**
@@ -35,13 +36,13 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProviderRequest $request)
     {
         $provider=Provider::create($request->all());
         $provider->fill(['password' => Hash::make($request->cpf)]);
         $provider->save();
 
-        return redirect()->route('provider.index');
+        return redirect()->route('provider.indexProvider');
     }
 
     /**
@@ -73,12 +74,13 @@ class ProviderController extends Controller
      * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(ProviderRequest $request, Provider $provider)
     {
         $provider->name = $request->name;
         $provider->cpf = $request->cpf;
         $provider->email = $request->email;
         $provider->telephone = $request->telephone;
+        $provider->cep = $request->cep;
         $provider->street = $request->street;
         $provider->district = $request->district;
         $provider->city = $request->city;
