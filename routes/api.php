@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\ServiceController;
 <<<<<<< HEAD
 });*/
 
+Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
 Route::post('auth/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
 
