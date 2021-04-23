@@ -14,4 +14,8 @@ class Service extends Model
         'descricao',
         'profissao',
     ];
+
+    public function profission(){
+        return $this->belongsTo(Profission::class, 'profissao');
+    }
 }
