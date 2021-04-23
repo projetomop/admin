@@ -39,7 +39,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return response()->json($service,200);
     }
 
     /**
