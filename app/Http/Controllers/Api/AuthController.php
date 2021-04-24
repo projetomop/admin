@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+
 
 class AuthController extends Controller
 {
@@ -25,44 +29,80 @@ class AuthController extends Controller
             'image' => $request->input(key:'image'),
             'password' => Hash::make($request->input(key:'password')),
         ]);
-        
-        // $validated = $request->validated();
-        // $client = Client::create($request->all());
-        // $client->fill(['password' => Hash::make($request->cpf)]);
-        // $client->save();
 
     }
 
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request)
-    {
+    public function login(Request $request){
+
         $credentials = $request->only(['email', 'password']);
 
-        if (!$token = auth( guard: 'api' )->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], status: 401);
+
+        if (!Auth::guard('client')->attempt($credentials)) {
+            return response([
+                'mensagem' => 'Login inválido'
+            ], status: 401);
         }
-
-        return $this->respondWithToken($token); 
         
+        $user = Auth::guard('client')->user();
+
+        $token = $user->createToken("token")->plainTextToken;
+
+        $minutos = 60*24;
+
+        $cookie = cookie('jwt', $token, $minutos);
+
+        //$token = $request->user()->createToken("token");
+
+        return response([
+            $user
+        ])->withCookie($cookie);
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth( guard: 'api' )->factory()->getTTL() * 60
-        ]);
+    public function user(){
+
+        $user = Auth::guard('client')->user();
+        return $user;
     }
+
+    public function logout( Request $request){
+        $cookie = Cookie::forget('jwt');
+
+        return response([
+            'mensagem' => 'Deslogado'
+        ])->withCookie($cookie);
+    }
+    
+
+    // /**
+    //  * Get a JWT via given credentials.
+    //  *
+    //  * @return \Illuminate\Http\JsonResponse
+    //  */
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->only(['email', 'password']);
+
+    //     if (!$token = auth( guard: 'api' )->attempt($credentials)) {
+    //         return response()->json(['error' => 'Unauthorized'], status: 401);
+    //     }
+
+    //     return $this->respondWithToken($token); 
+        
+    // }
+
+    // /**
+    //  * Get the token array structure.
+    //  *
+    //  * @param  string $token
+    //  *
+    //  * @return \Illuminate\Http\JsonResponse
+    //  */
+    // protected function respondWithToken($token)
+    // {
+    //     return response()->json([
+    //         'access_token' => $token,
+    //         'token_type' => 'bearer',
+    //         'expires_in' => auth( guard: 'api' )->factory()->getTTL() * 60
+    //     ]);
+    // }
 }
