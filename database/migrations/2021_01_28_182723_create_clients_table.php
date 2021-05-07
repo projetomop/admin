@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('street');
             $table->string('district');
             $table->string('city');
-            $table->string('');
+            $table->string('state');
             $table->string('image')->default('image_user.png');
             $table->string('password')->nullable();
             $table->timestamps();

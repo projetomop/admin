@@ -16,21 +16,26 @@ class AuthController extends Controller
 
     public function registrer(Request $request){
 
-        return Client::create([
-            'name' => $request->input(key:'name'),
-            'cpf' => $request->input(key:'cpf'),
-            'email' => $request->input(key:'email'),
-            'telephone' => $request->input(key:'telephone'),
-            'cep' => $request->input(key:'cep'),
-            'street' => $request->input(key:'street'),
-            'district' => $request->input(key:'district'),
-            'city' => $request->input(key:'city'),
-            'state' => $request->input(key:'state'),
-            'image' => $request->input(key:'image'),
-            'password' => Hash::make($request->input(key:'password')),
-        ]);
+        Client::create($request->all());
+        //$client->fill(['password' => Hash::make($request->cpf)]);
+        //$client->password = $request->cpf;
+        //return $client;
+                
+        // return Client::create([
+        //     'name' => $request->input(key:'name'),
+        //     'cpf' => $request->input(key:'cpf'),
+        //     'email' => $request->input(key:'email'),
+        //     'telephone' => $request->input(key:'telephone'),
+        //     'cep' => $request->input(key:'cep'),
+        //     'street' => $request->input(key:'street'),
+        //     'district' => $request->input(key:'district'),
+        //     'city' => $request->input(key:'city'),
+        //     'state' => $request->input(key:'state'),
+        //     'image' => $request->input(key:'image'),
+        //     'password' => Hash::make($request->input(key:'password')),
+        // ]);
 
-    }
+         }
 
     public function login(Request $request){
 
