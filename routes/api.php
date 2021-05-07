@@ -19,7 +19,7 @@ use App\Http\Controllers\Api\ServiceController;
 //     Route::get('/user', [App\Http\Controllers\Api\AuthController::class, 'user']);      
 // });
 
-Route::get('/user', [App\Http\Controllers\Api\AuthController::class, 'user']); 
+Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\Api\AuthController::class, 'user']); 
 Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
 Route::post('auth/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']); 

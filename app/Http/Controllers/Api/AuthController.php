@@ -17,6 +17,7 @@ class AuthController extends Controller
     public function registrer(Request $request){
 
         Client::create($request->all());
+        
         //$client->fill(['password' => Hash::make($request->cpf)]);
         //$client->password = $request->cpf;
         //return $client;
@@ -59,8 +60,9 @@ class AuthController extends Controller
         //$token = $request->user()->createToken("token");
 
         return response([
-            $user
-        ])->withCookie($cookie);
+            'message' => 'Success!',
+            'token' => $token    
+        ]);
     }
 
     public function user(){
@@ -69,11 +71,16 @@ class AuthController extends Controller
     }
 
     public function logout( Request $request){
-        $cookie = Cookie::forget('jwt');
-
+        $user = request()->user();
+        $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         return response([
             'message' => 'Deslogado'
-        ])->withCookie($cookie);
+        ]);
+        // $cookie = Cookie::forget('jwt');
+
+        // return response([
+        //     'message' => 'Deslogado'
+        // ])->withCookie($cookie);
     }
     
 
