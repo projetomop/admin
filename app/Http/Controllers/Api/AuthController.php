@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         if (!Auth::guard('client')->attempt($credentials)) {
             return response([
-                'mensagem' => 'Login inválido'
+                'message' => 'Login inválido'
             ], status: 401);
         }
         
@@ -60,15 +60,14 @@ class AuthController extends Controller
 
     public function user(){
 
-        $user = Auth::guard('client')->user();
-        return $user;
+        return Auth::user();
     }
 
     public function logout( Request $request){
         $cookie = Cookie::forget('jwt');
 
         return response([
-            'mensagem' => 'Deslogado'
+            'message' => 'Deslogado'
         ])->withCookie($cookie);
     }
     
