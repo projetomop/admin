@@ -15,12 +15,6 @@ class AuthController extends Controller
 {
 
     public function registrer(Request $request){
-
-        Client::create($request->all());
-        
-        //$client->fill(['password' => Hash::make($request->cpf)]);
-        //$client->password = $request->cpf;
-        //return $client;
                 
         // return Client::create([
         //     'name' => $request->input(key:'name'),
@@ -32,9 +26,13 @@ class AuthController extends Controller
         //     'district' => $request->input(key:'district'),
         //     'city' => $request->input(key:'city'),
         //     'state' => $request->input(key:'state'),
-        //     'image' => $request->input(key:'image'),
-        //     'password' => Hash::make($request->input(key:'password')),
+        //     //'image' => $request->input(key:'image'),
+        //     $client->fill(['password' => Hash::make($request->cpf)]);
         // ]);
+
+        $client = Client::create($request->all());
+        $client->fill(['password' => Hash::make($request->cpf)]);
+        $client->save();
 
          }
 
