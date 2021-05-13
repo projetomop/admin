@@ -16,11 +16,10 @@ class AuthController extends Controller
 
     public function registrer(Request $request){
 
-        Client::create($request->all());
-        
-        //$client->fill(['password' => Hash::make($request->cpf)]);
-        //$client->password = $request->cpf;
-        //return $client;
+        $client = Client::create($request->all());        
+        $client->fill(['password' => Hash::make($request->cpf)]);
+
+        return $client;
                 
         // return Client::create([
         //     'name' => $request->input(key:'name'),
@@ -32,7 +31,6 @@ class AuthController extends Controller
         //     'district' => $request->input(key:'district'),
         //     'city' => $request->input(key:'city'),
         //     'state' => $request->input(key:'state'),
-        //     'image' => $request->input(key:'image'),
         //     'password' => Hash::make($request->input(key:'password')),
         // ]);
 
@@ -71,49 +69,9 @@ class AuthController extends Controller
     }
 
     public function logout( Request $request){
-        $user = request()->user();
-        $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+        $request->user()->currentAccessToken()->delete();
         return response([
-            'message' => 'Deslogado'
+            'message' => 'Token deletado com sucesso!'
         ]);
-        // $cookie = Cookie::forget('jwt');
-
-        // return response([
-        //     'message' => 'Deslogado'
-        // ])->withCookie($cookie);
     }
-    
-
-    // /**
-    //  * Get a JWT via given credentials.
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only(['email', 'password']);
-
-    //     if (!$token = auth( guard: 'api' )->attempt($credentials)) {
-    //         return response()->json(['error' => 'Unauthorized'], status: 401);
-    //     }
-
-    //     return $this->respondWithToken($token); 
-        
-    // }
-
-    // /**
-    //  * Get the token array structure.
-    //  *
-    //  * @param  string $token
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // protected function respondWithToken($token)
-    // {
-    //     return response()->json([
-    //         'access_token' => $token,
-    //         'token_type' => 'bearer',
-    //         'expires_in' => auth( guard: 'api' )->factory()->getTTL() * 60
-    //     ]);
-    // }
 }
