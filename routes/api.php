@@ -22,7 +22,7 @@ use App\Http\Controllers\Api\ServiceController;
 Route::middleware('auth:sanctum')->get('/user', [App\Http\Controllers\Api\AuthController::class, 'user']); 
 Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
 Route::post('auth/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
-Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']); 
+Route::middleware('auth:sanctum')->post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']); 
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
 
 include_once(__DIR__.'/api/profissions.php');

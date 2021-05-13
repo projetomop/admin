@@ -63,17 +63,14 @@ class AuthController extends Controller
         ]);
     }
 
-    public function user(){
+    public function user(Request $request){
 
-        return Auth::user();
+        return $request->user();
     }
 
     public function logout( Request $request){
-        $user = request()->user();
-        $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
-        return response([
-            'message' => 'Deslogado'
-        ]);
+        
+        $user->tokens()->where('id', $tokenId)->delete();
         // $cookie = Cookie::forget('jwt');
 
         // return response([
