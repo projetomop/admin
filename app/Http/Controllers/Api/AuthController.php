@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         $client = Client::create($request->all());        
         $client->fill(['password' => Hash::make($request->cpf)]);
-
+        $client->save();
         return $client;
                 
         // return Client::create([
@@ -33,7 +33,7 @@ class AuthController extends Controller
         //     'state' => $request->input(key:'state'),
         //     'password' => Hash::make($request->input(key:'password')),
         // ]);
-
+        
          }
 
     public function login(Request $request){
@@ -63,9 +63,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function user(){
+    public function user(Request $request){
 
-        return Auth::user();
+        return $request->user();
     }
 
     public function logout( Request $request){
