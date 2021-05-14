@@ -44,7 +44,7 @@ class AuthController extends Controller
         if (!Auth::guard('client')->attempt($credentials)) {
             return response([
                 'message' => 'Login inválido'
-            ], status: 401);
+            ], 401);
         }
         
         $user = Auth::guard('client')->user();
