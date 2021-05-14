@@ -16,10 +16,10 @@ class AuthController extends Controller
 
     public function registrer(Request $request){
 
-        Client::create($request->all());
-        //$client->fill(['password' => Hash::make($request->cpf)]);
-        //$client->password = $request->cpf;
-        //return $client;
+        $client = Client::create($request->all());        
+        $client->fill(['password' => Hash::make($request->cpf)]);
+        $client->save();
+        return $client;
                 
         // return Client::create([
         //     'name' => $request->input(key:'name'),
@@ -31,10 +31,9 @@ class AuthController extends Controller
         //     'district' => $request->input(key:'district'),
         //     'city' => $request->input(key:'city'),
         //     'state' => $request->input(key:'state'),
-        //     'image' => $request->input(key:'image'),
         //     'password' => Hash::make($request->input(key:'password')),
         // ]);
-
+        
          }
 
     public function login(Request $request){
@@ -44,7 +43,7 @@ class AuthController extends Controller
 
         if (!Auth::guard('client')->attempt($credentials)) {
             return response([
-                'mensagem' => 'Login inválido'
+                'message' => 'Login inválido'
             ], status: 401);
         }
         
@@ -59,55 +58,20 @@ class AuthController extends Controller
         //$token = $request->user()->createToken("token");
 
         return response([
-            $user
-        ])->withCookie($cookie);
+            'message' => 'Success!',
+            'token' => $token    
+        ]);
     }
 
-    public function user(){
+    public function user(Request $request){
 
-        $user = Auth::guard('client')->user();
-        return $user;
+        return $request->user();
     }
 
     public function logout( Request $request){
-        $cookie = Cookie::forget('jwt');
-
+        $request->user()->currentAccessToken()->delete();
         return response([
-            'mensagem' => 'Deslogado'
-        ])->withCookie($cookie);
+            'message' => 'Token deletado com sucesso!'
+        ]);
     }
-    
-
-    // /**
-    //  * Get a JWT via given credentials.
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only(['email', 'password']);
-
-    //     if (!$token = auth( guard: 'api' )->attempt($credentials)) {
-    //         return response()->json(['error' => 'Unauthorized'], status: 401);
-    //     }
-
-    //     return $this->respondWithToken($token); 
-        
-    // }
-
-    // /**
-    //  * Get the token array structure.
-    //  *
-    //  * @param  string $token
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // protected function respondWithToken($token)
-    // {
-    //     return response()->json([
-    //         'access_token' => $token,
-    //         'token_type' => 'bearer',
-    //         'expires_in' => auth( guard: 'api' )->factory()->getTTL() * 60
-    //     ]);
-    // }
 }
