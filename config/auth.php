@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'clients',
         ],
+        'pretavel' => [
+            'driver' => 'session',
+            'provider' => 'pretavel'
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,6 +81,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Client::class,
         ],
+        'pretavel' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Provider::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
