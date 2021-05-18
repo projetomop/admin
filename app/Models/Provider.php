@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Collective\Html\Eloquent\FormAccessible;
+use Laravel\Sanctum\HasApiTokens;
 
 class Provider extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable, HasApiTokens;
     use FormAccessible;
 
     protected $fillable = [
@@ -23,5 +24,15 @@ class Provider extends Model
         'state',
         'image',
         'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 }

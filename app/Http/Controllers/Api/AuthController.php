@@ -51,11 +51,9 @@ class AuthController extends Controller
 
         $token = $user->createToken("token")->plainTextToken;
 
-        $minutos = 60*24;
+        // $minutos = 60*24;
 
-        $cookie = cookie('jwt', $token, $minutos);
-
-        //$token = $request->user()->createToken("token");
+        // $cookie = cookie('jwt', $token, $minutos);
 
         return response([
             'message' => 'Success!',
@@ -69,6 +67,8 @@ class AuthController extends Controller
     }
 
     public function logout( Request $request){
+
+        Auth::logout;
         $request->user()->currentAccessToken()->delete();
         return response([
             'message' => 'Token deletado com sucesso!'
