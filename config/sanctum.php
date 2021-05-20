@@ -17,6 +17,9 @@ return [
         'SANCTUM_STATEFUL_DOMAINS',
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,https://mop.atenaagencia.com/'.parse_url(env('APP_URL'), PHP_URL_HOST)
     )),
+    // 'stateful' => [
+    //     '.mop.atenaagencia.com'
+    // ],
 
     /*
     |--------------------------------------------------------------------------
