@@ -44,7 +44,7 @@ class AuthController extends Controller
         if (!Auth::guard('client')->attempt($credentials)) {
             return response([
                 'message' => 'Login inválido'
-            ], status: 401);
+            ], 401);
         }
         
         $user = Auth::guard('client')->user();
@@ -68,7 +68,6 @@ class AuthController extends Controller
 
     public function logout( Request $request){
 
-        Auth::logout();
         $request->user()->currentAccessToken()->delete();
         return response([
             'message' => 'Token deletado com sucesso!'
