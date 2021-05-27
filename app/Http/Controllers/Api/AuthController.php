@@ -20,19 +20,6 @@ class AuthController extends Controller
         $client->fill(['password' => Hash::make($request->cpf)]);
         $client->save();
         return $client;
-                
-        // return Client::create([
-        //     'name' => $request->input(key:'name'),
-        //     'cpf' => $request->input(key:'cpf'),
-        //     'email' => $request->input(key:'email'),
-        //     'telephone' => $request->input(key:'telephone'),
-        //     'cep' => $request->input(key:'cep'),
-        //     'street' => $request->input(key:'street'),
-        //     'district' => $request->input(key:'district'),
-        //     'city' => $request->input(key:'city'),
-        //     'state' => $request->input(key:'state'),
-        //     'password' => Hash::make($request->input(key:'password')),
-        // ]);
         
          }
 
