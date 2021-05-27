@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Validation\ValidationException;
 
 
 class AuthController extends Controller
@@ -20,45 +21,23 @@ class AuthController extends Controller
         $client->fill(['password' => Hash::make($request->cpf)]);
         $client->save();
         return $client;
-                
-        // return Client::create([
-        //     'name' => $request->input(key:'name'),
-        //     'cpf' => $request->input(key:'cpf'),
-        //     'email' => $request->input(key:'email'),
-        //     'telephone' => $request->input(key:'telephone'),
-        //     'cep' => $request->input(key:'cep'),
-        //     'street' => $request->input(key:'street'),
-        //     'district' => $request->input(key:'district'),
-        //     'city' => $request->input(key:'city'),
-        //     'state' => $request->input(key:'state'),
-        //     'password' => Hash::make($request->input(key:'password')),
-        // ]);
         
          }
 
     public function login(Request $request){
-
-        $credentials = $request->only(['email', 'password']);
-
-
-        if (!Auth::guard('client')->attempt($credentials)) {
-            return response([
-                'message' => 'Login inválido'
-            ], 401);
-        }
-        
-        $user = Auth::guard('client')->user();
-
-        $token = $user->createToken("token")->plainTextToken;
-
-        // $minutos = 60*24;
-
-        // $cookie = cookie('jwt', $token, $minutos);
-
-        return response([
-            'message' => 'Success!',
-            'token' => $token    
+        $request->validate ([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
+
+        $user = Client::where('email', $request->email)->first();
+        if(! $user || ! Hash::check($request->password, $user->password)){
+            throw ValidationException::withMessages([
+                'email' => ['Credenciais incorretas'],
+            ]);
+        }
+
+        return $user->createToken("token")->plainTextToken;
     }
 
     public function user(Request $request){

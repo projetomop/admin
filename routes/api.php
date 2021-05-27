@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
-Route::post('auth/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('auth/login', [AuthController::class, 'login']);
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
 
 include_once(__DIR__.'/api/profissions.php');
