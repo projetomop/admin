@@ -37,10 +37,6 @@ class AuthController extends Controller
 
         $token = $user->createToken("token")->plainTextToken;
 
-        // $minutos = 60*24;
-
-        // $cookie = cookie('jwt', $token, $minutos);
-
         return response([
             'message' => 'Success!',
             'token' => $token    
