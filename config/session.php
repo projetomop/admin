@@ -155,8 +155,8 @@ return [
     |
     */
 
-    // 'domain' => env('SESSION_DOMAIN', null),
-    'domain' => '.atenaagencia.com',
+    'domain' => env('SESSION_DOMAIN', null),
+    // 'domain' => '.atenaagencia.com',
     /*
     |--------------------------------------------------------------------------
     | HTTPS Only Cookies
