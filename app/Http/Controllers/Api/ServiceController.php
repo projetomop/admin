@@ -15,7 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $service = Service::all();
+        $service = Service::with('profission')->get();
         return  response()->json($service, 200);
     }
 
@@ -39,7 +39,11 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return response()->json([
+            'service' => $service,
+            'profissao'=>$service->profission,
+            200
+        ]);
     }
 
     /**
