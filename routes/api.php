@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\AuthController;
+Use App\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
-Route::post('auth/login', [AuthController::class, 'login'])->withoutMiddleware([App\http\Middleware\VerifyCsrfToken::class]);
+Route::post('auth/login', [AuthController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class);
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
 
 include_once(__DIR__.'/api/profissions.php');
