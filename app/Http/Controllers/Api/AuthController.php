@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Validation\ValidationException;
 
-
 class AuthController extends Controller
 {
 
@@ -25,19 +24,27 @@ class AuthController extends Controller
          }
 
     public function login(Request $request){
-        $request->validate ([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->only(['email', 'password']);
 
-        $user = Client::where('email', $request->email)->first();
-        if(! $user || ! Hash::check($request->password, $user->password)){
-            throw ValidationException::withMessages([
-                'email' => ['Credenciais incorretas'],
-            ]);
+
+        if (!Auth::guard('client')->attempt($credentials)) {
+            return response([
+                'message' => 'Login inválido'
+            ], 401);
         }
 
-        return $user->createToken("token")->plainTextToken;
+        $user = Auth::guard('client')->user();
+
+        $token = $user->createToken("token")->plainTextToken;
+
+        // $minutos = 60*24;
+
+        // $cookie = cookie('jwt', $token, $minutos);
+
+        return response([
+            'message' => 'Success!',
+            'token' => $token    
+        ]);
     }
 
     public function user(Request $request){
