@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\AuthController;
 Use App\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +20,12 @@ Use App\Http\Middleware\VerifyCsrfToken;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::get('/user', [App\Http\Controllers\Api\AuthController::class, 'user']); 
+    Route::get('/user', [AuthController::class, 'user']); 
     Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);      
 });
 
-Route::post('registrer', [App\Http\Controllers\Api\AuthController::class, 'registrer']);
-Route::post('auth/login', [AuthController::class, 'login'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('registrer', [AuthController::class, 'registrer']);
+Route::post('auth/login', [AuthController::class, 'login']);
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
 
 include_once(__DIR__.'/api/profissions.php');
