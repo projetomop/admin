@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'auth/login',
+        'sanctum/token'
     ];
 }

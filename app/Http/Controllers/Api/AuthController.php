@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
+use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,26 @@ class AuthController extends Controller
         return $client;
         
          }
+
+    public function create_token(Request $request){
+        $credentials = $request->only(['email', 'password']);
+
+
+        if (!Auth::guard('client')->attempt($credentials)) {
+            return response([
+                'message' => 'Login inválido'
+            ], 401);
+        }
+
+        $user = Auth::guard('client')->user();
+
+        $token = $user->createToken("token")->plainTextToken;
+
+        return response([
+            'message' => 'Success!',
+            'token' => $token    
+        ]);
+    }    
 
     public function login(Request $request){
         $credentials = $request->only(['email', 'password']);
