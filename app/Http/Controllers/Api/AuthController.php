@@ -25,16 +25,18 @@ class AuthController extends Controller
          }
 
     public function create_token(Request $request){
-        $credentials = $request->only(['email', 'password']);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        $user = Client::where('email', $request->email)->first();
 
-        if (!Auth::guard('client')->attempt($credentials)) {
-            return response([
-                'message' => 'Login inválido'
-            ], 401);
+        if(! $user || ! Hash::check($request->password, $user->password)){
+            return [
+                'error' => 'The provided credentials are incorrect.'
+            ];
         }
-
-        $user = Auth::guard('client')->user();
 
         $token = $user->createToken("token")->plainTextToken;
 
