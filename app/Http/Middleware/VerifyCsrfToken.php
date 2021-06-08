@@ -14,6 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'auth/login',
-        'sanctum/token'
+        'https://mop.atenaagencia.com/api/sanctum/token'
     ];
 }
