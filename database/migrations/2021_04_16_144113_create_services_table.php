@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('tipo');
             $table->string('descricao');
-            $table->string('profissao');
+            $table->foreignId('profissao')->constrained('profissions');
             $table->timestamps();
         });
     }
