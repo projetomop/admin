@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Client;
+use App\Models\Provider;
 use App\Http\Controllers\Controller;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
 
-    public function registrer(Request $request){
+    public function registrer_client(Request $request){
 
         $client = Client::create($request->all());        
         $client->fill(['password' => Hash::make($request->cpf)]);
@@ -23,6 +24,15 @@ class AuthController extends Controller
         return $client;
         
          }
+    
+    public function registrer_provider(Request $request){
+
+        $provider = Provider::create($request->all());        
+        $provider->fill(['password' => Hash::make($request->cpf)]);
+        $provider->save();
+        return $provider;
+            
+        }
 
     public function create_token(Request $request){
         $request->validate([
@@ -73,9 +83,13 @@ class AuthController extends Controller
 
     public function logout( Request $request){
 
-        $request->user()->currentAccessToken()->delete();
-        return response([
-            'message' => 'Token deletado com sucesso!'
+        // $request->user()->currentAccessToken()->delete();
+        // auth()->user()->tokens()->delete();
+        $user = $request->user();
+        $user->tokens()->delete();
+        return response()->json([
+            'message' => 'Token deletado com sucesso!',
+            
         ]);
     }
 }

@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Collective\Html\Eloquent\FormAccessible;
+// use Collective\Html\Eloquent\FormAccessible;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Provider extends Model
+class Provider extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
-    use FormAccessible;
+    // use FormAccessible;
 
     protected $fillable = [
         'name',
