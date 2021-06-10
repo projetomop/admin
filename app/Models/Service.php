@@ -10,9 +10,9 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable =[
-        'tipo',
-        'descricao',
-        'profissao',
+        'type',
+        'description',
+        'profission',
     ];
 
     public function profission(){

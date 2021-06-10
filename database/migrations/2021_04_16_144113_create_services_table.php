@@ -15,9 +15,10 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
-            $table->string('descricao');
-            $table->foreignId('profissao')->constrained('profissions');
+            $table->string('type');
+            $table->string('description');
+            $table->foreignId('profission')->constrained('profissions');
+            $table->enum('status', ['waiting', 'marked','canceled'])->nullable()->default('waiting');
             $table->timestamps();
         });
     }
