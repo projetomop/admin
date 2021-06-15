@@ -12,10 +12,10 @@ class Service extends Model
     protected $fillable =[
         'type',
         'description',
-        'profission',
+        'profission_id',
     ];
 
     public function profission(){
-        return $this->belongsTo(Profission::class, 'profission');
+        return $this->belongsTo(Profission::class, 'profission_id');
     }
 }
