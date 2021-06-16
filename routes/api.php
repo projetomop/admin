@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::get('/user', [AuthController::class, 'user']); 
+    Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);      
 });
 
 Route::post('registrer', [AuthController::class, 'registrer']);
 Route::post('auth/login', [AuthController::class, 'login']);
+
 
 Route::post('sanctum/token', [AuthController::class, 'create_token']);
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);
