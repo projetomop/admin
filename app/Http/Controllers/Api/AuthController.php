@@ -10,8 +10,6 @@ use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -34,27 +32,27 @@ class AuthController extends Controller
             
         }
 
-    public function create_token(Request $request){
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+    // public function create_token(Request $request){
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
 
-        $user = Client::where('email', $request->email)->first();
+    //     $user = Client::where('email', $request->email)->first();
 
-        if(! $user || ! Hash::check($request->password, $user->password)){
-            return [
-                'error' => 'The provided credentials are incorrect.'
-            ];
-        }
+    //     if(! $user || ! Hash::check($request->password, $user->password)){
+    //         return [
+    //             'error' => 'The provided credentials are incorrect.'
+    //         ];
+    //     }
 
-        $token = $user->createToken("token")->plainTextToken;
+    //     $token = $user->createToken("token")->plainTextToken;
 
-        return response([
-            'message' => 'Success!',
-            'token' => $token    
-        ]);
-    }    
+    //     return response([
+    //         'message' => 'Success!',
+    //         'token' => $token    
+    //     ]);
+    // }    
 
     public function login(Request $request){
         $credentials = $request->only(['email', 'password']);
@@ -67,6 +65,25 @@ class AuthController extends Controller
         }
 
         $user = Auth::guard('client')->user();
+
+        $token = $user->createToken("token")->plainTextToken;
+
+        return response([
+            'message' => 'Success!',
+            'token' => $token    
+        ]);
+    }
+    public function login_provider(Request $request){
+        $credentials = $request->only(['email', 'password']);
+
+
+        if (!Auth::guard('pretavel')->attempt($credentials)) {
+            return response([
+                'message' => 'Login inválido'
+            ], 401);
+        }
+
+        $user = Auth::guard('pretavel')->user();
 
         $token = $user->createToken("token")->plainTextToken;
 
