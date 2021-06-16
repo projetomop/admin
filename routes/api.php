@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/user', [AuthController::class, 'user']);
-    Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);      
+    Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);      
 });
 
 Route::post('registrer', [AuthController::class, 'registrer']);
