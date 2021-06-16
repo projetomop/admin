@@ -13,6 +13,8 @@ class Service extends Model
         'type',
         'description',
         'profission_id',
+        'client_id',
+        'receive'
     ];
 
     public function profission(){
