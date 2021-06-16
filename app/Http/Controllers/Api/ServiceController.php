@@ -13,7 +13,7 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $service = Service::with('profission')->get();
         return  response()->json($service, 200);
