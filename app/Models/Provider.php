@@ -26,6 +26,7 @@ class Provider extends Authenticatable
         'state',
         'image',
         'password',
+        'profission_id'
     ];
 
     /**
