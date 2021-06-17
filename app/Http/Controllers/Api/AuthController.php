@@ -19,7 +19,9 @@ class AuthController extends Controller
         $client = Client::create($request->all());        
         $client->fill(['password' => Hash::make($request->cpf)]);
         $client->save();
-        return $client;
+        return response([
+            'message' => 'Success!',
+        ]);
         
          }
     
@@ -28,7 +30,9 @@ class AuthController extends Controller
         $provider = Provider::create($request->all());        
         $provider->fill(['password' => Hash::make($request->cpf)]);
         $provider->save();
-        return $provider;
+        return response([
+            'message' => 'Success!',
+        ]);
             
         }
 
