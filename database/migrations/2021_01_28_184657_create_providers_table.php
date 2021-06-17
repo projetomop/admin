@@ -27,6 +27,7 @@ class CreateProvidersTable extends Migration
             $table->foreignId('profission_id')->constrained('profissions');
             $table->string('image')->default('image_user.png');
             $table->string('password')->nullable();
+            $table->string('type')->nullable()->default('provider');
             $table->timestamps();
         });
     }

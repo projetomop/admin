@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('state');
             $table->string('image')->default('image_user.png');
             $table->string('password')->nullable();
+            $table->string('type')->nullable()->default('client');
             $table->timestamps();
         });
     }
