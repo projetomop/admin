@@ -24,6 +24,7 @@ class CreateProvidersTable extends Migration
             $table->string('district');
             $table->string('city');
             $table->string('state');
+            $table->foreignId('profission_id')->constrained('profissions');
             $table->string('image')->default('image_user.png');
             $table->string('password')->nullable();
             $table->timestamps();
