@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
-    Route::get('/user', [AuthController::class, 'user']); 
-    Route::post('/logout', [AuthController::class, 'logout']);      
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);      
 });
 
 
@@ -32,6 +32,7 @@ Route::post('registrer_provider', [AuthController::class, 'registrer_provider'])
 
 // Rota de Login
 Route::post('auth/login', [AuthController::class, 'login']);
+
 
 Route::post('sanctum/token', [AuthController::class, 'create_token']);
 //Route::get('users',  [App\Http\Controllers\Api\UserController::class, 'index']);

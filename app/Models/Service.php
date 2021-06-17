@@ -10,12 +10,14 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable =[
-        'tipo',
-        'descricao',
-        'profissao',
+        'type',
+        'description',
+        'profission_id',
+        'client_id',
+        'receive'
     ];
 
     public function profission(){
-        return $this->belongsTo(Profission::class, 'profissao');
+        return $this->belongsTo(Profission::class, 'profission_id');
     }
 }
