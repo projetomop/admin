@@ -30,8 +30,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 Route::post('registrer_client', [AuthController::class, 'registrer_client']);
 Route::post('registrer_provider', [AuthController::class, 'registrer_provider']);
 
-// Rota de Login
+// Rotas de Login
 Route::post('auth/login', [AuthController::class, 'login']);
+Route::post('auth/login_provider', [AuthController::class, 'login_provider']);
 
 
 Route::post('sanctum/token', [AuthController::class, 'create_token']);
