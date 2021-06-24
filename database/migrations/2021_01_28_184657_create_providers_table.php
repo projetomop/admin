@@ -28,6 +28,8 @@ class CreateProvidersTable extends Migration
             $table->string('image')->default('image_user.png');
             $table->string('password')->nullable();
             $table->string('type')->nullable()->default('provider');
+            $table->longText('curriculum')->nullable();
+            $table->boolean('confirmed')->nullable()->default(false);
             $table->timestamps();
         });
     }
