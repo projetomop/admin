@@ -106,19 +106,19 @@ class DatabaseSeeder extends Seeder
             'image' => 'image_user.png',
             'password' => Hash::make('04261687550'),
         ]);
-        // DB::table('providers')->insert([
-        //     'name' => 'Herbt',
-        //     'email' => 'herbetjr@gmail.com',
-        //     'cpf' => '04261687550',
-        //     'telephone' => '7498114876',
-        //     'cep' => '48903822',
-        //     'street' => 'herbetjr@gmail.com',
-        //     'district' => 'herbetjr@gmail.com',
-        //     'city' => 'dssdsd',
-        //     'state' => 'dssdsd',
-        //     'image' => 'image_user.png',
-        //     'password' => Hash::make('04261687550'),
-        // ]);
+        DB::table('providers')->insert([
+            'name' => 'Gil',
+            'email' => 'gil@gmail.com',
+            'cpf' => '12345678',
+            'telephone' => '7498114876',
+            'cep' => '48903822',
+            'street' => 'jua',
+            'district' => 'jua',
+            'city' => 'dssdsd',
+            'state' => 'dssdsd',
+            'image' => 'image_user.png',
+            'password' => Hash::make('12345678'),
+        ]);
         foreach ($profissoes as $p) {
             DB::table('profissions')->insert([
                 'description' => $p
