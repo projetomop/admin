@@ -15,7 +15,7 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        $proposal = Proposal::find(1)->with('service')->get();
+        $proposal = Proposal::where('service_id', 1)->with('service')->get();
         return  response()->json($proposal, 200);
     }
 
