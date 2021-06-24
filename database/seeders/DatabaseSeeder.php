@@ -105,7 +105,13 @@ class DatabaseSeeder extends Seeder
             'state' => 'dssdsd',
             'image' => 'image_user.png',
             'password' => Hash::make('04261687550'),
-        ]);
+        ]);   
+        foreach ($profissoes as $p) {
+            DB::table('profissions')->insert([
+                'description' => $p
+            ]);
+        }
+
         DB::table('providers')->insert([
             'name' => 'Gil',
             'email' => 'gil@gmail.com',
@@ -120,11 +126,6 @@ class DatabaseSeeder extends Seeder
             'profission_id' => 1,
             'password' => Hash::make('12345678'),
         ]);
-        foreach ($profissoes as $p) {
-            DB::table('profissions')->insert([
-                'description' => $p
-            ]);
-        }
        
 
         // \App\Models\User::factory(10)->create();
