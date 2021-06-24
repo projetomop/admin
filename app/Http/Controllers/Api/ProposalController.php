@@ -37,7 +37,8 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cont = Proposal::where('service_id', 1)->get()->count();
+        return response()->json($cont, 200);
     }
 
     /**
