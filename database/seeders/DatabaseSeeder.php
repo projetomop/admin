@@ -117,6 +117,7 @@ class DatabaseSeeder extends Seeder
             'city' => 'dssdsd',
             'state' => 'dssdsd',
             'image' => 'image_user.png',
+            'profission_id' => 1,
             'password' => Hash::make('12345678'),
         ]);
         foreach ($profissoes as $p) {
