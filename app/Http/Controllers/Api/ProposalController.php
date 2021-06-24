@@ -40,10 +40,12 @@ class ProposalController extends Controller
         $cont = Proposal::where('service_id', 1)->get()->count();
         if ($cont >= 3) {
             return response()->json([
+                'cont' => $cont,
                 'message' => 'Excedeu o limite de propostas'
             ], 200);
         } else {
             return response()->json([
+                'cont' => $cont,
                 'message' => 'Pode cadastrar'
             ], 200);
         }
