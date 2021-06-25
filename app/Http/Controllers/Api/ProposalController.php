@@ -13,9 +13,9 @@ class ProposalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $proposal = Proposal::where('service_id', 1)->with('service')->get();
+        $proposal = Proposal::where('service_id', $request->service_id)->with('service')->get();
         return  response()->json($proposal, 200);
     }
 
@@ -37,7 +37,7 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        $cont = Proposal::where('service_id', 1)->get()->count();
+        $cont = Proposal::where('service_id', $request->id)->get()->count();
         if ($cont >= 3) {
             return response()->json([
                 'cont' => $cont,
