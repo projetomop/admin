@@ -45,7 +45,7 @@ class ProposalController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'cont' => $cont,
+                'cont' => $request->all(),
                 'message' => 'Pode cadastrar'
             ], 200);
         }
