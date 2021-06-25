@@ -40,4 +40,9 @@ class Provider extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
+    }
 }
