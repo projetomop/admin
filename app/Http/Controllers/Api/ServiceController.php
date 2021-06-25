@@ -42,6 +42,7 @@ class ServiceController extends Controller
         return response()->json([
             'service' => $service,
             'profissao'=>$service->profission,
+            'proprosals' => $service->proposals,
             200
         ]);
     }
