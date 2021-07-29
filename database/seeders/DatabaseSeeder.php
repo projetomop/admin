@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('senha'),
         ]);
         DB::table('clients')->insert([
-            'name' => 'Herbt',
+            'name' => 'Herbet',
             'email' => 'herbetjr@gmail.com',
             'cpf' => '04261687550',
             'telephone' => '7498114876',
