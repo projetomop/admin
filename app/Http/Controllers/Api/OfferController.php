@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Proposal;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
-class ProposalController extends Controller
+class OfferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProposalController extends Controller
      */
     public function index(Request $request)
     {
-        $proposal = Proposal::where('service_id', $request->service_id)->with('service')->get();
+        $proposal = Offer::where('service_id', $request->service_id)->with('service')->get();
         return  response()->json($proposal, 200);
     }
 
@@ -37,7 +37,7 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        $cont = Proposal::where('service_id', $request->id)->get()->count();
+        $cont = Offer::where('service_id', $request->id)->get()->count();
         if ($cont >= 3) {
             return response()->json([
                 'cont' => $cont,
@@ -54,10 +54,10 @@ class ProposalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Proposal  $proposal
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Proposal $proposal)
+    public function show(Offer $offer)
     {
         //
     }
@@ -65,10 +65,10 @@ class ProposalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Proposal  $proposal
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proposal $proposal)
+    public function edit(Offer $offer)
     {
         //
     }
@@ -77,10 +77,10 @@ class ProposalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proposal  $proposal
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proposal $proposal)
+    public function update(Request $request, Offer $offer)
     {
         //
     }
@@ -88,10 +88,10 @@ class ProposalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Proposal  $proposal
+     * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proposal $proposal)
+    public function destroy(Offer $offer)
     {
         //
     }

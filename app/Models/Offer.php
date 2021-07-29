@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Proposal extends Model
+class Offer extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'service_id',
         'provider_id',
@@ -18,10 +18,12 @@ class Proposal extends Model
         'status'
     ];
 
-    public function service(){
+    public function service()
+    {
         return $this->belongsTo(Service::class, 'service_id');
     }
-    public function provider(){
+    public function provider()
+    {
         return $this->belongsTo(Provider::class, 'provider_id');
     }
 }

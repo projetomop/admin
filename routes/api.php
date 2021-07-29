@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
-use App\Http\Controllers\Api\ProposalController;
+use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\AuthController;
 use App\Models\Service;
 Use App\Http\Middleware\VerifyCsrfToken;
@@ -34,7 +34,7 @@ include_once(__DIR__.'/api/profissions.php');
 
 Route::apiResources([
     'service' => ServiceController::class,
-    'proposal' => ProposalController::class,
+    'proposal' => OfferController::class,
 ]);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
