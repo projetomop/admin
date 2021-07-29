@@ -19,6 +19,7 @@ class Provider extends Authenticatable
         'cpf',
         'email',
         'telephone',
+        'birthDate',
         'cep',
         'street',
         'district',

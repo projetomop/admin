@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\ProposalController;
 use App\Http\Controllers\Api\AuthController;
+use App\Models\Service;
 Use App\Http\Middleware\VerifyCsrfToken;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
@@ -36,4 +36,19 @@ Route::apiResources([
     'service' => ServiceController::class,
     'proposal' => ProposalController::class,
 ]);
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::get('canceled/{id}', function($id){
+        $service = Service::where('id', $id)->firstOrFail();
+        $service->status = 'canceled';
+        $service->update();
+        return response()->json($service, 200);
+    });
+    Route::get('terminate/{id}', function($id){
+        $service = Service::where('id', $id)->firstOrFail();
+        $service->status = 'marked';
+        $service->update();
+        return $service;
+    });
+});
 

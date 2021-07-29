@@ -15,6 +15,7 @@ class CreateClientsTable extends Migration
             $table->string('cpf')->unique();
             $table->string('email')->unique();
             $table->string('telephone');
+            $table->date('birthDate');
             $table->string('cep');
             $table->string('street');
             $table->string('district');

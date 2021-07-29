@@ -98,6 +98,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'herbetjr@gmail.com',
             'cpf' => '04261687550',
             'telephone' => '7498114876',
+            'birthDate' => '2000/05/23',
             'cep' => '48903822',
             'street' => 'herbetjr@gmail.com',
             'district' => 'herbetjr@gmail.com',
@@ -105,7 +106,8 @@ class DatabaseSeeder extends Seeder
             'state' => 'dssdsd',
             'image' => 'image_user.png',
             'password' => Hash::make('04261687550'),
-        ]);   
+        ]);
+
         foreach ($profissoes as $p) {
             DB::table('profissions')->insert([
                 'description' => $p
@@ -117,6 +119,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'gil@gmail.com',
             'cpf' => '12345678',
             'telephone' => '7498114876',
+            'birthDate' => '1998/06/23',
             'cep' => '48903822',
             'street' => 'jua',
             'district' => 'jua',
@@ -124,6 +127,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'dssdsd',
             'image' => 'image_user.png',
             'profission_id' => 1,
+            'confirmed' => true,
             'password' => Hash::make('12345678'),
         ]);
        
