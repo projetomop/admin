@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ClientAppCrontroller;
 use App\Models\Service;
 Use App\Http\Middleware\VerifyCsrfToken;
 use GrahamCampbell\ResultType\Result;
@@ -38,6 +39,7 @@ Route::apiResources([
 ]);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
+    // Rota de cancelamento de proposta
     Route::get('canceled/{id}', function($id){
         $service = Service::where('id', $id)->firstOrFail();
         $service->status = 'canceled';
@@ -48,7 +50,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
         $service = Service::where('id', $id)->firstOrFail();
         $service->status = 'marked';
         $service->update();
-        return $service;
+        return response()->json($service, 200);
     });
+
+    // Rota de Edição de Perfil
+    Route::get('editProfile/{id}', [ClientAppCrontroller::class, 'editClientApp']);
 });
 
