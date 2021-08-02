@@ -20,15 +20,15 @@ class ClientAppCrontroller extends Controller
         //
     }
 
-    public function editClientApp(Request $request, $id){
-        $user = $request->user();
+    public function editClientProfile(Request $request, $id){
+        // $user = $request->user();
         $client = Client::where('id', $id)->firstOrFail();
 
-        if($user->cpf != $client->cpf){
-            return response([
-                'message' => 'Você não não permissão para essa ação.'
-            ], 401);
-        }
+        // if($user->cpf != $client->cpf){
+        //     return response([
+        //         'message' => 'Você não não permissão para essa ação.'
+        //     ], 401);
+        // }
             $client->name = $request->name;
             $client->telephone = $request->telephone;
             $client->cep = $request->cep;
@@ -36,7 +36,7 @@ class ClientAppCrontroller extends Controller
             $client->district = $request->district;
             $client->city = $request->city;
             $client->state = $request->state;
-            // $client->update();
+            $client->update();
         
         return  response([
                 'message' => 'Success!',

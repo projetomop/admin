@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientAppCrontroller;
+use App\Http\Controllers\Api\ProviderAppController;
 use App\Models\Service;
 Use App\Http\Middleware\VerifyCsrfToken;
 use GrahamCampbell\ResultType\Result;
@@ -53,7 +54,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
         return response()->json($service, 200);
     });
 
-    // Rota de Edição de Perfil
-    Route::get('editProfile/{id}', [ClientAppCrontroller::class, 'editClientApp']);
 });
+// Rotas de Edição de Perfil
+Route::put('editProfile/{id}', [ClientAppCrontroller::class, 'editClientProfile']);
+Route::put('editProviderProfile/{id}', [ProviderAppController::class, 'editProviderProfile']);
 
