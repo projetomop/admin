@@ -44,6 +44,6 @@ class Provider extends Authenticatable
 
     public function proposals()
     {
-        return $this->hasMany(Proposal::class);
+        return $this->hasMany(Offer::class);
     }
 }

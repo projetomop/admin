@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\Offer;
 
 class ServiceController extends Controller
 {
@@ -39,10 +40,11 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
+        $proposals = Offer::where('service_id', $service->id)->with('provider')->get();
         return response()->json([
             'service' => $service,
             'profissao'=>$service->profission,
-            'proposals' => $service->proposals,
+            'proposals' => $proposals,
             200
         ]);
     }

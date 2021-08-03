@@ -37,17 +37,29 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        $cont = Offer::where('service_id', $request->id)->get()->count();
+        $cont = Offer::where('service_id', $request->service_id)->get()->count();
         if ($cont >= 3) {
             return response()->json([
                 'cont' => $cont,
                 'message' => 'Excedeu o limite de propostas'
             ], 200);
         } else {
-            return response()->json([
-                'cont' => $cont,
-                'message' => 'Pode cadastrar'
-            ], 200);
+            $cont_ofert = Offer::where('service_id', $request->service_id)->where('provider_id', $request->provider_id)->get()->count();   
+            if($cont_ofert == 0){
+                $offer = Offer::create($request->all());
+                return response()->json([
+                    'cont' => $cont,
+                    'message' => 'Proposta cadastrada com sucesso',
+                    'offer_prestador' => $cont_ofert,
+                    'request' => $request->all()
+                ], 200);
+
+            }else{
+                return response()->json([
+                    'message' => 'Você ja possui proposta cadastrada',
+                ], 200);
+            }
+           
         }
     }
 
