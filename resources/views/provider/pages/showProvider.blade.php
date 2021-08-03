@@ -1,3 +1,8 @@
+@inject('profissions', 'App\Models\Profission')
+@php
+$profission = $profissions->all();
+$profissao = $profission->pluck('description', 'id');
+@endphp
 @extends('adminlte::page')
 
 @section('content')
@@ -12,7 +17,8 @@
                     </h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm ml-3">
-                            <a type="button" class="btn btn-info btn-sm" href="{{route('provider.edit',$provider->id)}}">
+                            <a type="button" class="btn btn-info btn-sm"
+                                href="{{route('provider.edit',$provider->id)}}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </div>
@@ -21,14 +27,19 @@
                 <div class="card-body">
                     {!! Form::model($provider, ['method' => 'PUT', 'route' => ['provider.update', $provider->id]]) !!}
 
-
                     <div class="form-group">
                         {{ Form::label('name', 'Nome:') }}
                         {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
                     </div>
-                    <div class="form-group">
-                        {{ Form::label('email', 'E-mail:') }}
-                        {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ Form::label('email', 'E-mail:') }}
+                            {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ Form::label('birthDate', 'Data da Nascimento:') }}
+                            {!! Form::date('birthDate', $value = null,['class' => 'form-control']) !!}
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -61,11 +72,18 @@
                             {!! Form::label('state', 'Estado') !!}
                             {!! Form::text('state', $value = null, ['class' => ['form-control'], 'id'=>'uf']) !!}
                         </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('profission_id', 'Profissao') !!}
+                            {!! Form::select('profission_id', $profissao->prepend('----',''), $provider->profission_id, ['class' =>
+                            'form-control']) !!}
+                        </div>
+                     
                     </div>
-                    {!! Form::close() !!}
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
+    </div>
     </div>
 </section>
 

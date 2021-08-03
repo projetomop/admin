@@ -1,6 +1,7 @@
 @inject('profissions', 'App\Models\Profission')
 @php
 $profission = $profissions->all();
+$profissao = $profission->pluck('description', 'id');
 @endphp
 <section class="content">
     <div class="row">
@@ -39,9 +40,15 @@ $profission = $profissions->all();
                         {{ Form::label('name', 'Nome:') }}
                         {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
                     </div>
-                    <div class="form-group">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
                         {{ Form::label('email', 'E-mail:') }}
                         {!! Form::text('email', $value = null,['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ Form::label('birthDate', 'Data da Nascimento:') }}
+                        {!! Form::date('birthDate', $value = null,['class' => 'form-control']) !!}
+                    </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -73,6 +80,10 @@ $profission = $profissions->all();
                         <div class="fomr-group col-md-6">
                             {!! Form::label('state', 'Estado') !!}
                             {!! Form::text('state', $value = null, ['class' => ['form-control'], 'id'=>'uf']) !!}
+                        </div>
+                        <div class="fomr-group col-md-6">
+                            {!! Form::label('profission_id', 'Profissao') !!}
+                            {!! Form::select('profission_id', $profissao->prepend('----',''), $value = null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
 

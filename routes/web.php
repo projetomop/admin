@@ -18,7 +18,10 @@ Route::get('/', function () {
 });
 
 Route::resource('clientes', 'App\Http\Controllers\ClientController')->names('client')->parameters(['clientes' => 'client']);
+
 Route::resource('prestador', 'App\Http\Controllers\ProviderController')->names('provider')->parameters(['prestador' => 'provider']);
+
+Route::get('/prestador/{provider}/{confirmed}',[App\Http\Controllers\ProviderController::class, 'confirmed'])->name('provider.confirmed');
 Route::resource('profissoes', 'App\Http\Controllers\ProfissionController')->names('profission')->parameters(['profissao' => 'profission']);
 
 Route::get('/teste', function(){

@@ -42,7 +42,7 @@ class ProviderController extends Controller
         $provider->fill(['password' => Hash::make($request->cpf)]);
         $provider->save();
 
-        return redirect()->route('provider.indexProvider');
+        return redirect()->route('provider.index');
     }
 
     /**
@@ -74,20 +74,9 @@ class ProviderController extends Controller
      * @param  \App\Models\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(ProviderRequest $request, Provider $provider)
+    public function update(Request $request, Provider $provider)
     {
-        $provider->name = $request->name;
-        $provider->cpf = $request->cpf;
-        $provider->email = $request->email;
-        $provider->telephone = $request->telephone;
-        $provider->cep = $request->cep;
-        $provider->street = $request->street;
-        $provider->district = $request->district;
-        $provider->city = $request->city;
-        $provider->state = $request->state;
-
-        $provider->save();
-
+        $provider->update($request->all());
         return redirect()->route('provider.index');
     }
 
@@ -101,5 +90,19 @@ class ProviderController extends Controller
     {
         $provider->delete();
         return redirect()->route('provider.index');
+    }
+
+    public function confirmed(Provider $provider, $confirmed){
+
+        if($confirmed == 0){
+            $provider->confirmed = true;
+        }elseif ($confirmed == 1) {
+            $provider->confirmed = false;
+        }    
+
+        $provider->save();
+
+        return back();
+        
     }
 }

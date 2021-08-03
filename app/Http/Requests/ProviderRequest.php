@@ -26,7 +26,7 @@ class ProviderRequest extends FormRequest
         return [
             'name' => 'required|min:6',
             'email' => 'required|email',
-            'cpf' => 'required|max:11|unique:clients'
+            'cpf' => 'required|max:11|unique:providers'
         ];
     }
 }

@@ -60,7 +60,14 @@
                         <td>{{ $provider->city }}</td>
                         <td>{{ $provider->state }}</td> -->
                     <td class="text-center"><a href="{{ route('provider.show', ['provider' => $provider->id]) }}"
-                            class="btn btn-success">Ver</a>
+                            class="btn btn-info">Ver</a>
+                        @if(!$provider->confirmed)
+                        <a href="{{ route('provider.confirmed', ['provider' => $provider->id, 'confirmed' => $provider->confirmed]) }}"
+                            class="btn btn-success" title="Ativar Prestador"><i class="fa fa-check"></i></a>
+                        @else
+                            <a href="{{ route('provider.confirmed', ['provider' => $provider->id, 'confirmed' => $provider->confirmed]) }}"
+                                class="btn btn-danger" title=" Bloquear Prestador"><i class="fa fa-window-close"></i></a>
+                        @endif
                     </td>
                 </tr>
             </tbody>
