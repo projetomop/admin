@@ -15,7 +15,9 @@ class Offer extends Model
         'description',
         'days',
         'value',
-        'status'
+        'status',
+        'startDate',
+        'startTime'
     ];
 
     public function service()

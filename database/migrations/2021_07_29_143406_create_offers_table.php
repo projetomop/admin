@@ -21,6 +21,8 @@ class CreateOffersTable extends Migration
             $table->integer('days');
             $table->float('value');
             $table->enum('status', ['accept', 'reject'])->nullable();
+            $table->date('startDate')->nullable();
+            $table->time('startTime')->nullable();
             $table->timestamps();
         });
     }
