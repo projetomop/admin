@@ -28,6 +28,8 @@ Route::get('/teste', function(){
     return view('test');
 });
 
+Route::get('messages',  [App\Http\Controllers\ChatController::class, 'show']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
