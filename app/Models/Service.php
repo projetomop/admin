@@ -22,6 +22,10 @@ class Service extends Model
         return $this->belongsTo(Profission::class, 'profission_id');
     }
 
+    public function client(){
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
     public function proposals(){
         return $this->hasMany(Offer::class);
     }
