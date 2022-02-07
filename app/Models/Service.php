@@ -11,11 +11,11 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable =[
-        'type',
+        // 'type',
         'description',
         'profission_id',
         'client_id',
-        'receive'
+        // 'receive'
     ];
 
     public function profission(){

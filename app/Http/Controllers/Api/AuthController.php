@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function registrer_client(Request $request){
 
         $client = Client::create($request->all());        
-        $client->fill(['password' => Hash::make($request->cpf)]);
+        $client->fill(['password' => Hash::make($request->password)]);
         $client->save();
         return response([
             'message' => 'Success!',
@@ -28,8 +28,11 @@ class AuthController extends Controller
     public function registrer_provider(Request $request){
 
         $provider = Provider::create($request->all());        
-        $provider->fill(['password' => Hash::make($request->cpf)]);
+        $provider->fill(['password' => Hash::make($request->password)]);
         $provider->save();
+        $client = Client::create($request->all());        
+        $client->fill(['password' => Hash::make($request->password)]);
+        $client->save();
         return response([
             'message' => 'Success!',
         ]);
