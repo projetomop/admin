@@ -69,9 +69,10 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show($id)
     {
-        //
+        $proposal = Offer::where('id', $id)->with('provider')->get();
+        return response()->json($proposal,200);
     }
 
     /**
