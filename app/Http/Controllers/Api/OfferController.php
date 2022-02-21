@@ -71,7 +71,7 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        $proposal = Offer::find($id)->with('provider');
+        $proposal = Offer::where('id', $id)->with('provider')->first();
         return response()->json($proposal,200);
     }
 
