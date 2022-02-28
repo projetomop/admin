@@ -71,8 +71,11 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        $proposal = Offer::where('id', $id)->with('provider')->first();
-        return response()->json($proposal,200);
+        $proposal = Offer::find($id);
+        return response()->json([
+            'proposal' => $proposal,
+            'provider' => $proposal->provider
+        ], 200);
     }
 
     /**
@@ -81,9 +84,9 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offer $offer)
+    public function edit($offer, $action)
     {
-        //
+        
     }
 
     /**
@@ -93,9 +96,14 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update($offer, Request $request)
     {
-        //
+        if($request->action == 'reject'){
+            $query = Offer::find($offer);
+            $query->status = "reject";
+            $query->save();
+            return response()->json($query, 200);
+        }
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientAppCrontroller;
 use App\Http\Controllers\Api\ProviderAppController;
+use App\Http\Controllers\Api\ChatController;
 use App\Models\Service;
 Use App\Http\Middleware\VerifyCsrfToken;
 use GrahamCampbell\ResultType\Result;
@@ -55,6 +56,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     });
 
 });
+//messagens
+
+Route::get('messages/{offer}/{client}/{provider}',  [ChatController::class, 'show']);
+Route::post('messages/',  [ChatController::class, 'store']);
+
 // Rotas de Edição de Perfil
 Route::put('editProfile/{id}', [ClientAppCrontroller::class, 'editClientProfile']);
 Route::put('editProviderProfile/{id}', [ProviderAppController::class, 'editProviderProfile']);
