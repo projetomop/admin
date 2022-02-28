@@ -17,6 +17,9 @@ class Service extends Model
         'client_id',
         // 'receive'
     ];
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+    ];
 
     public function profission(){
         return $this->belongsTo(Profission::class, 'profission_id');
