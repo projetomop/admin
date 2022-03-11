@@ -46,4 +46,9 @@ class Provider extends Authenticatable
     {
         return $this->hasMany(Offer::class);
     }
+    public function profission()
+    {
+        return $this->belongsTo(Profission::class, 'profission_id');
+    }
+
 }

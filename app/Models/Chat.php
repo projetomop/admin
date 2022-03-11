@@ -16,4 +16,9 @@ class Chat extends Model
         'message',
         'type_sender'
     ];
+
+    public function provider(){    
+            
+        return $this->belongsTo(Provider::class, 'provider_id');
+    }
 }

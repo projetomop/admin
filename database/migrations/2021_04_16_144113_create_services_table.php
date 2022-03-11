@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('description');
             $table->foreignId('profission_id')->constrained('profissions');
             $table->foreignId('client_id')->constrained('clients');
-            $table->enum('status', ['waiting', 'marked','canceled'])->nullable()->default('waiting');
+            $table->enum('status', ['waiting', 'progress','marked','canceled'])->nullable()->default('waiting');
             $table->timestamps();
             // $table->dateTime('receive');
         });
