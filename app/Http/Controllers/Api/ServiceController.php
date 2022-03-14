@@ -45,6 +45,7 @@ class ServiceController extends Controller
             'service' => $service,
             'profissao'=>$service->profission,
             'proposals' => $proposals,
+            'client' => $service->client,
             200
         ]);
     }

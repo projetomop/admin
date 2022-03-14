@@ -22,8 +22,10 @@ class Offer extends Model
     {
         return $this->belongsTo(Service::class, 'service_id');
     }
+
     public function provider()
     {
         return $this->belongsTo(Provider::class, 'provider_id');
     }
+
 }
