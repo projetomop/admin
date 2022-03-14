@@ -16,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
-        $service = Service::with('profission')->with('proposals')->where('status','<>','canceled')->get();
+        $service = Service::with('profission')->with('proposals')->with('client')->where('status','<>','canceled')->get();
         return  response()->json($service, 200);
     }
 
