@@ -16,7 +16,11 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
-        $service = Service::with('profission')->with('proposals')->with('client')->where('status','<>','canceled')->get();
+        $service = Service::with('profission')
+        ->with('proposals')
+        ->with('client')
+        // ->where('status', '<>', 'canceled')
+        ->get();
         return  response()->json($service, 200);
     }
 
@@ -28,8 +32,8 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-      $service = Service::create($request->all());
-      return response()->json(['success'=> true]);
+        $service = Service::create($request->all());
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -43,7 +47,7 @@ class ServiceController extends Controller
         $proposals = Offer::where('service_id', $service->id)->with('provider')->get();
         return response()->json([
             'service' => $service,
-            'profissao'=>$service->profission,
+            'profissao' => $service->profission,
             'proposals' => $proposals,
             'client' => $service->client,
             200

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use App\Models\Service;
 use App\Models\Offer;
 
 class ScheduleController extends Controller
@@ -29,6 +30,9 @@ class ScheduleController extends Controller
         if($query){
             $offer->status = "accept";
             $offer->save();
+            $alterStatusService = Service::find($offer->service_id);
+            $alterStatusService->status = "marked";
+            $alterStatusService->save();
         }
 
         return response()->json([
