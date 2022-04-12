@@ -33,4 +33,18 @@ class ChatController extends Controller
        
         return response()->json($pro, 200);
     }
+
+    public function showChatProvider($provider){
+        $i=0;
+        // $pro = Chat::where('client_id', $client)->selectRaw('DISTINCT provider_id, offer_id')->with('provider')->get();
+        $pro = DB::table('chats')
+        ->where('provider_id', $provider)
+        ->join('clients', 'clients.id', '=', 'chats.client_id')
+        ->join('services', 'services.client_id', '=', 'chats.client_id')
+        ->select('clients.id as client_id', 'clients.name', 'chats.offer_id', 'services.description')
+        ->distinct()
+        ->get();
+       
+        return response()->json($pro, 200);
+    }
 }

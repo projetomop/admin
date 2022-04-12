@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 Route::get('messages/{offer}/{client}/{provider}',  [ChatController::class, 'show']);
 Route::get('chats/{client}',  [ChatController::class, 'showChat']);
+Route::get('chats-provider/{provider}',  [ChatController::class, 'showChatProvider']);
 Route::post('messages/',  [ChatController::class, 'store']);
 //agenda
 Route::get('schedule/{idCliente}',  [ScheduleController::class, 'getAgenda']);
