@@ -17,6 +17,13 @@ class ScheduleController extends Controller
         ->get();
         return response()->json($query,200);
     }
+    public function getAgendaProvider($idProvider){
+        $query = Schedule::where('provider_id', $idProvider)
+        ->with('client')
+        ->with('service')
+        ->get();
+        return response()->json($query,200);
+    }
 
     public function postAgenda(Request $request){
         $offer=Offer::find($request->idProposal);

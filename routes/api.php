@@ -65,6 +65,7 @@ Route::get('chats-provider/{provider}',  [ChatController::class, 'showChatProvid
 Route::post('messages/',  [ChatController::class, 'store']);
 //agenda
 Route::get('schedule/{idCliente}',  [ScheduleController::class, 'getAgenda']);
+Route::get('schedule-provider/{idProvider}',  [ScheduleController::class, 'getAgendaProvider']);
 Route::post('schedule',  [ScheduleController::class, 'postAgenda']);
 
 // Rotas de Edição de Perfil
