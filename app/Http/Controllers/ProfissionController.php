@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProfissionController extends Controller
 {

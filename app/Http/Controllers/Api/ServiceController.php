@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\Profission;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -53,6 +55,13 @@ class ServiceController extends Controller
             200
         ]);
     }
+
+    public function searchProfission($busca){
+        $search = Str::replace('%20', ' ', $busca);
+        $clients = Profission::where('description', 'like', '%' . $search . '%')->get();
+        return response()->json($clients);
+    }
+
 
     /**
      * Update the specified resource in storage.
